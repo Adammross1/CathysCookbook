@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Search</title>
+    <link rel="stylesheet" type="text/css" href="/styles/main.css">
+</head>
+
+<body class="bg-image">
+    <header>
+        <!-- Nav Bar -->
+        <nav class="navbar">
+            <!-- <div class="logo">
+          <img class="logo-img" src="/images/Cathy's (blk).svg" alt="Logo">
+        </div> -->
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="/search">My Recipes</a>
+                <a href="/addRecipe">Add Recipe</a>
+                <a href="/myLists">My Lists</a>
+                <a href="/manageAccount">Account</a>
+
+                <!-- EJS FOR LOGIN / LOGOUT LINK FUNCTIONALITY -->
+
+                <% if (user) { %>
+                    <% var name="Log Out" ; %>
+                        <% var path="/logout" ; %>
+                            <% } else { %>
+                                <% var name="Log In" ; %>
+                                    <% var path="/login" ; %>
+                                        <% } %>
+                                            <a href="<%= path %>">
+                                                <%= name %>
+                                            </a>
+
+            </div>
+        </nav>
+
+    </header>
+
+    <div class="space"></div>
+
+    <main class="backdrop">
+
+        <section class="logo-main">
+            <div class="img-hero">
+                <img src="../images/search.jpg">
+            </div>
+        </section>
+
+        <h1>SEARCH RECIPES</h1>
+
+        <div class="grey-line"></div>
+        <div class="space"></div>
+        <div class="space"></div>
+
+        <form id="recipeForm" class="form-container">
+            <input type="text" id="mealName" name="mealName" class="search-input" required>
+            <button type="button" class="button" onclick="searchRecipe()">SEARCH</button>
+        </form>
+
+        <div id="resultContainer" class="results"></div>
+        <div class="recipe-container">
+            <div id="recipeDetails" class="recipedetails"></div>
+        </div>
+
+        <script>
+            function searchRecipe() {
+                var mealName = document.getElementById("mealName").value;
+                var apiUrl = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + encodeURIComponent(mealName);
+
+                fetch(apiUrl)
+                    .then(response => response.json())
+                    .then(data => displayResults(data.meals))
+                    .catch(error => console.error('Error:', error));
+            }
+
+            function displayResults(meals) {
+                var resultContainer = document.getElementById("resultContainer");
+                resultContainer.innerHTML = "";
+
+                if (meals) {
+                    meals.forEach(meal => {
+                        var mealLink = document.createElement("a");
+                        mealLink.textContent = meal.strMeal;
+                        mealLink.classList.add("meal-link");
+                        var lineBreak = document.createElement("br")
+                        mealLink.onclick = function () {
+                            showRecipeDetails(meal);
+                        };
+                        resultContainer.appendChild(mealLink);
+                        resultContainer.appendChild(lineBreak);
+                    });
+                } else {
+                    resultContainer.innerHTML = "<p>No matching meals found.</p>";
+                }
+            }
+
+            function showRecipeDetails(meal) {
+                var recipeDetailsContainer = document.getElementById("recipeDetails");
+                recipeDetailsContainer.innerHTML = `<div class="space"></div>
+                                        <h2 class="recipename">${meal.strMeal}</h2>
+                                        <p class="api-ingredients">${getIngredients(meal)}</p>
+                                        <p class="api-instructions">${meal.strInstructions}</p>`;
+            }
+
+            function getIngredients(meal) {
+                var ingredients = [];
+                for (let i = 1; i <= 20; i++) {
+                    var ingredientKey = "strIngredient" + i;
+                    var measurementKey = "strMeasure" + i;
+                    if (meal[ingredientKey] && meal[measurementKey]) {
+                        ingredients.push(`${meal[ingredientKey]} ${meal[measurementKey]}`);
+                    }
+                }
+                return ingredients.join('<br>');
+            }
+        </script>
+
+    </main>
+
+    <div class="space"></div>
+    <div class="space"></div>
+    <div class="space"></div>
+
+    <footer>
+        <p>Cathy's Cookbook © 2023</p>
+    </footer>
+</body>
+
+</html>

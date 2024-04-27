@@ -1,0 +1,138 @@
+<!-- 
+    Authors: Section 2, Group 1 (Michael Hutchings, Jared Rosenlund, Adam Ross, and Ryan Ward)
+    Description: This page tells the story of Cathy's Cookbook and why we chose the project.
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="This is a platform providing a systematic way to study and implement the characteristics of Jesus Christ into one's own self.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Meal Planning Tool">
+  <meta property="og:site_name" content="Easy Meal Planner">
+  <meta property="og:url" content="">
+  <meta property="og:description"
+    content="Create and save favorite recipes, and generate a shopping list and meal plan for the week.">
+  <meta property="og:type" content="website">
+  <meta property="og:image:alt" content="Christ wearing a crown of thorns.">
+  <meta property="og:image:width" content="1200px">
+  <meta property="og:image:height" content="630px">
+
+  <!-- Title -->
+  <title>Cathy's Cookbook</title>
+
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/Cathy's (blk).svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/Cathy's (blk).svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/Cathy's (blk).svg">
+
+  <!-- Fonts -->
+  <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="/styles/main.css">
+</head>
+
+<body class="bg-image">
+  <header>
+    <!-- Nav Bar -->
+    <nav class="navbar">
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/search">My Recipes</a>
+        <a href="/searchapi">Online Recipes</a>
+        <a href="/addRecipe">Add Recipe</a>
+        <a href="/myLists">My Lists</a>
+        <a href="/manageAccount">Account</a>
+
+        <!-- EJS FOR LOGIN / LOGOUT LINK FUNCTIONALITY -->
+
+        <% if (user) { %>
+          <% console.log("This is the log with try on the index page if there is a user :", user) %>
+            <% var name="Log Out" ; %>
+              <% var path="/logout" ; %>
+                <% } else { %>
+                  <% console.log("This is the log with catch on the index page if there is no user.") %>
+                    <% var name="Log In" ; %>
+                      <% var path="/login" ; %>
+                        <% } %>
+
+                          <a href="<%= path %>">
+                            <%= name %>
+                          </a>
+
+      </div>
+    </nav>
+
+  </header>
+
+  <div class="space"></div>
+
+  <main class="backdrop">
+
+    <section class="logo-main">
+      <div class="img-hero">
+        <img src="../images/about.jpg">
+      </div>
+    </section>
+
+    <h1>ABOUT</h1>
+    <div class="grey-line"></div>
+
+    <div class="center-p">
+      <p class="about-intro">This website was built to assist Cathy in
+        getting nutrition despite
+        her gastroparesis. The website
+        can be
+        used by anyone to help with meal preparation, but our biggest goal is to make juicing a little easier for
+        Cathy.
+        You can read Cathy's experience with gastroparesis below:</p>
+    </div>
+    <div class="center-p">
+      <p class="about">"I was diagnosed about 14 years ago. I was sent home from the hospital with a paper that
+        explained
+        my food
+        choices going forward. My diet was 5 saltine crackers, beef broth, Gatorade, and ginger ale 3 times a day for
+        the
+        rest of my life. I gasped when I saw the details and told the nurse, "I'll die of malnutrition!" She pointed to
+        the bottom of the page where it said warning, malnutrition will occur. The purpose of the diet was to have no
+        fiber so gravity would carry the food through my body, as my stomach was paralyzed and couldn't process food. I
+        refused to accept malnutrition as my constant companion. <br><br> I studied the Word of Wisdom as my first move.
+        It said it
+        was for the weakest of saints, and I assumed I was in that category, so I hoped there was something in there for
+        me. I read all the cross-reference scriptures as well, and my takeaway was to try barley water, as the Word of
+        Wisdom mentioned barley for man. That was the beginning of doing a lot of research and turning my kitchen into a
+        lab, experimenting with many foods, finding ways to get nutrition into my system. I've experienced a lot of "not
+        going to work for me" experiments and got myself in some pain and sick, but as the years have gone on, I've
+        found
+        foods I can juice and make into tea that not only get vitamins into me but also are healing my body. <br><br>
+        The
+        last time
+        I went to the gastroenterologist, he said I was rocking it compared to my contemporaries who are atrophying and
+        angry (sadly, probably hangry, you get miserably hungry) and said to keep doing what I'm doing. It's not the
+        protocol from the doctor but the Word of Wisdom juices that have helped me so much. I miss solid food a lot, and
+        especially in the beginning, I would cry at times as I smelled food cooking and it was not for me. I especially
+        miss salad. It has too much fiber. When I'm healed, whether in this life or the next, the first thing I'm going
+        to
+        do is go to the biggest salad bar and eat a little of EVERYTHING! Yeehaw! In the meantime, I'm thrilled with the
+        benefits of juicing." <br><br>- Cathy Ross</p>
+    </div>
+  </main>
+  <div class="space"></div>
+  <div class="space"></div>
+
+  <footer>
+    <p>Cathy's Cookbook © 2023</p>
+  </footer>
+
+</body>
+
+</html>

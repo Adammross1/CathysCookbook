@@ -1,0 +1,151 @@
+<!-- 
+    Authors: Section 2, Group 1 (Michael Hutchings, Jared Rosenlund, Adam Ross, and Ryan Ward)
+    Description: This view allows users to view their account information. There are also buttons to edit or delete your account.
+    This is also the view that allows the admin user to see, update, and delete all accounts.
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="This is a platform providing a systematic way to study and implement the characteristics of Jesus Christ into one's own self.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Meal Planning Tool">
+    <meta property="og:site_name" content="Easy Meal Planner">
+    <meta property="og:url" content="">
+    <meta property="og:description"
+        content="Create and save favorite recipes, and generate a shopping list and meal plan for the week.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="../images/Cathy's (blk).svg">
+    <meta property="og:image:alt" content="Christ wearing a crown of thorns.">
+    <meta property="og:image:width" content="1200px">
+    <meta property="og:image:height" content="630px">
+
+    <!-- Title -->
+    <title>Cathy's Cookbook</title>
+
+    <!-- Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/Cathy's (blk).svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/Cathy's (blk).svg">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/Cathy's (blk).svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/styles/main.css">
+</head>
+
+<body class="bg-image">
+    <nav class="navbar">
+        <!-- <div class="logo">
+        <img class="logo-img" src="/images/Cathy's (blk).svg" alt="Logo">
+    </div> -->
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/search">My Recipes</a>
+            <a href="/addRecipe">Add Recipe</a>
+            <a href="/searchapi">Online Recipes</a>
+            <a href="/myLists">My Lists</a>
+
+            <!-- EJS FOR LOGIN / LOGOUT LINK FUNCTIONALITY -->
+
+            <% if (user) { %>
+                <% console.log("This is the log with try on the index page if there is a user :", user) %>
+                    <% var name="Log Out" ; %>
+                        <% var path="/logout" ; %>
+                            <% } else { %>
+                                <% console.log("This is the log with catch on the index page if there is no user.") %>
+                                    <% var name="Log In" ; %>
+                                        <% var path="/login" ; %>
+                                            <% } %>
+
+                                                <a href="<%= path %>">
+                                                    <%= name %>
+                                                </a>
+
+        </div>
+    </nav>
+
+    <div class="space"></div>
+
+    <div class="login-logo">
+        <img src="../images/Cathy's (blk).svg" width="300px" height="300px">
+    </div>
+    <h1 class="mylists">Manage Account</h1>
+    <div class="grey-line"></div>
+    <div class="space"></div>
+    <div class="space"></div>
+
+    <!-- Account view table -->
+    <div class="table-container">
+        <table class="MAtable">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Admin can view all accounts, so you may need to loop through list -->
+                <% for (let iCount=0; iCount < userList.length; iCount++) { %>
+                    <tr>
+                        <td>
+                            <%= userList[iCount].username %>
+                        </td>
+                        <td>
+                            <%= userList[iCount].up_password %>
+                        </td>
+                        <td>
+                            <%= userList[iCount].userfirstname %>
+                        </td>
+                        <td>
+                            <%= userList[iCount].userlastname %>
+                        </td>
+                        <td>
+                            <%= userList[iCount].email %>
+                        </td>
+
+                        <!-- Buttons to edit and delete accounts -->
+                        <td><a href="/editUser/<%= userList[iCount].username %>"><button type="button"
+                                    class="table-button">EDIT</button></a>
+                        </td>
+                        <td>
+                            <form action="/deleteUser/<%= userList[iCount].username %>" method="post"><button
+                                    type="submit" class="delete-button">X</button></form>
+
+                        </td>
+                    </tr>
+                    </tr>
+                    <% } %>
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="space"></div>
+    <div class="space"></div>
+    <div class="space"></div>
+    <div class="space"></div>
+    <div class="space"></div>
+    <div class="space"></div>
+</body>
+
+<footer>
+    Cathy's Cookbook © 2023
+</footer>
+
+</html>

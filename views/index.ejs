@@ -1,0 +1,417 @@
+<!-- 
+    Authors: Section 2, Group 1 (Michael Hutchings, Jared Rosenlund, Adam Ross, and Ryan Ward)
+    Description: This view is the landing page for Cathy's Cookbook.
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="This is a platform providing a systematic way to study and implement the characteristics of Jesus Christ into one's own self.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Meal Planning Tool">
+  <meta property="og:site_name" content="Easy Meal Planner">
+  <meta property="og:url" content="">
+  <meta property="og:description"
+    content="Create and save favorite recipes, and generate a shopping list and meal plan for the week.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/Cathy's (blk).svg">
+  <meta property="og:image:alt" content="">
+  <meta property="og:image:width" content="1200px">
+  <meta property="og:image:height" content="630px">
+
+  <!-- Title -->
+  <title>Cathy's Cookbook</title>
+
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="images/Cathy's (blk).svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/Cathy's (blk).svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/Cathy's (blk).svg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <!-- <link rel="stylesheet" type="text/css" href="/styles/main.css"> -->
+
+  <!-- Carousel -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="/styles/styles.css">
+
+</head>
+
+<body>
+
+  <div class="hero-container">
+    <!-- Nav Bar -->
+    <nav class="navbar index-navbar">
+      <!-- <div class="logo">
+        <img class="logo-img" src="/images/Cathy's.svg" alt="Logo">
+      </div> -->
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/search">My Recipes</a>
+        <a href="/searchapi">Online Recipes</a>
+        <a href="/addRecipe">Add Recipe</a>
+        <a href="/myLists">My Lists</a>
+        <a href="/manageAccount">Account</a>
+
+        <!-- EJS FOR LOGIN / LOGOUT LINK FUNCTIONALITY -->
+
+        <% if (user) { %>
+          <% var name="Log Out" ; %>
+            <% var path="/logout" ; %>
+              <% } else { %>
+                <% var name="Log In" ; %>
+                  <% var path="/login" ; %>
+                    <% } %>
+                      <a href="<%= path %>">
+                        <%= name %>
+                      </a>
+
+      </div>
+    </nav>
+
+    <!-- Replace the video ID with your actual YouTube video ID -->
+    <!-- <iframe class="hero-video" width="560" height="315"
+      src="https://www.youtube.com/embed/R6aIsLeMWw4?autoplay=1&mute=1&controls=0&showinfo=0&autohide=1&start=107"
+      frameborder="0" allowfullscreen></iframe> -->
+
+    <video class="hero-video" width="560" height="315" autoplay muted loop id="herovid">
+      <source src="videos/herovid.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="hero-content">
+      <img src="/images/Cathy's.svg">
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="carousel-container">
+      <h1 class="carousel-h1">FAQs</h1>
+      <div class="grey-line-carousel"></div>
+      <p class="description">Find answers to frequently asked questions:</p><br>
+
+      <div class="second-line">
+
+        <div class="animated-text-container">
+          <div class="mask">
+            <p class="animated-text">
+              What can I do on this website?<br />
+              What features do I get when I make an account?<br />
+              How do I search for a recipe?<br />
+              Can I add my own recipes?<br />
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="background">
+    <section class="carousel" aria-label="Gallery">
+      <ol class="carousel__viewport">
+
+        <!-- Slide 1 -->
+
+        <li id="carousel__slide1" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <!-- <a href="#carousel__slide8" class="carousel__prev">Go to last slide</a>
+              <a href="#carousel__slide2" class="carousel__next">Go to next slide</a> -->
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-12">
+                  <h1>What can I do on this website?</h1>
+                  <div class="grey-line"></div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="tab-content">
+                    <div id="tab1" class="tab-pane fade show active">
+                      <div class="accordion">
+                        <div class="card">
+                          <div class="card-header" id="infraOne">
+                            <a href="#collapseOne" data-toggle="collapse" data-target="#collapseOne"
+                              aria-expanded="false" aria-controls="collapseOne" class="question">
+                              <p class="mb-0">
+                                Search Recipes
+                              </p>
+                              <svg class="icon plus-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <line class="vertical-line" x1="8" y1="1" x2="8" y2="15" stroke="#444"
+                                  stroke-width="3" />
+                                <line class="horizontal-line" x1="1" y1="8" x2="15" y2="8" stroke="#444"
+                                  stroke-width="3" />
+                              </svg>
+                            </a>
+                          </div>
+                          <div id="collapseOne" class="collapse" aria-labelledby="infraOne" data-parent="#accordion">
+                            <div class="card-body">
+                              Search for recipes that you created in "My Recipes" or search for recipes through
+                              TheMealDB Rest API on "Online Recipes"
+                            </div>
+                          </div>
+                        </div><!-- close card-->
+                        <div class="line-break"></div>
+                        <div class="card">
+                          <div class="card-header" id="infraThree">
+                            <a href="#collapseThree" class="question" data-toggle="collapse"
+                              data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                              <p class="mb-0">Add Recipes</p>
+                              <svg class="icon plus-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <line class="vertical-line" x1="8" y1="1" x2="8" y2="15" stroke="#444"
+                                  stroke-width="3" />
+                                <line class="horizontal-line" x1="1" y1="8" x2="15" y2="8" stroke="#444"
+                                  stroke-width="3" />
+                              </svg>
+                            </a>
+                          </div>
+                          <div id="collapseThree" class="collapse" aria-labelledby="infraThree"
+                            data-parent="#accordion">
+                            <div class="card-body">
+                              Put your own favorite recipes into Cathy's Cookbook in "Add Recipes"
+                            </div>
+                          </div>
+                        </div><!-- card-->
+                        <div class="line-break"></div>
+                        <div class="card">
+                          <div class="card-header" id="infraFour">
+                            <a href="#collapseFour" class="question" data-toggle="collapse" data-target="#collapseFour"
+                              aria-expanded="false" aria-controls="collapseFour">
+                              <p class="mb-0">Create Lists</p>
+                              <svg class="icon plus-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <line class="vertical-line" x1="8" y1="1" x2="8" y2="15" stroke="#444"
+                                  stroke-width="3" />
+                                <line class="horizontal-line" x1="1" y1="8" x2="15" y2="8" stroke="#444"
+                                  stroke-width="3" />
+                              </svg>
+                            </a>
+                          </div>
+                          <div id="collapseFour" class="collapse" aria-labelledby="infraFour" data-parent="#accordion">
+                            <div class="card-body">
+                              Organize your favorite recipes into categories by storing them in lists in "My Lists"
+                            </div>
+                          </div>
+                        </div><!-- card -->
+                      </div><!-- accordion-->
+                    </div><!-- tab 1-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Slide 2 -->
+
+        <li id="carousel__slide2" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper"></div>
+          <!-- <a href="#carousel__slide1" class="carousel__prev">Go to previous slide</a>
+            <a href="#carousel__slide3" class="carousel__next">Go to next slide</a> -->
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+                <h1>About</h1>
+                <div class="grey-line"></div>
+                <h2>Learn the story that inspired the creation of this website</h2><br>
+                <div class="ss">
+                  <img src="../images/aboutss.jpg" class="ss">
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Slide 3 -->
+
+        <li id="carousel__slide3" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper"></div>
+          <!-- <a href="#carousel__slide1" class="carousel__prev">Go to previous slide</a>
+            <a href="#carousel__slide3" class="carousel__next">Go to next slide</a> -->
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+                <h1>My Recipes</h1>
+                <div class="grey-line"></div>
+                <h2>Search for recipes that you created in "Add Recipes"</h2><br>
+                <div class="ss">
+                  <img src="../images/myrecipess.jpg">
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Slide 4 -->
+
+        <li id="carousel__slide4" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper"></div>
+          <!-- <a href="#carousel__slide1" class="carousel__prev">Go to previous slide</a>
+            <a href="#carousel__slide3" class="carousel__next">Go to next slide</a> -->
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+                <h1>Online Recipes</h1>
+                <div class="grey-line"></div>
+                <h2>Search for recipes through TheMealDB Rest API</h2><br>
+                <div class="ss">
+                  <img src="../images/onlinerecipess.jpg">
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Slide 5 -->
+
+        <li id="carousel__slide5" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper"></div>
+          <!-- <a href="#carousel__slide1" class="carousel__prev">Go to previous slide</a>
+            <a href="#carousel__slide3" class="carousel__next">Go to next slide</a> -->
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+                <h1>Add Recipe</h1>
+                <div class="grey-line"></div>
+                <h2>Put your own favorite recipes into Cathy's Cookbook</h2><br>
+                <div class="ss">
+                  <img src="../images/addrecipess.jpg">
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Slide 6 -->
+
+        <li id="carousel__slide6" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper"></div>
+          <!-- <a href="#carousel__slide1" class="carousel__prev">Go to previous slide</a>
+            <a href="#carousel__slide3" class="carousel__next">Go to next slide</a> -->
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+                <h1>My Lists</h1>
+                <div class="grey-line"></div>
+                <h2>Organize recipes into categories by storing them in lists</h2><br>
+                <div class="ss">
+                  <img src="../images/mylistss.jpg">
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Slide 7 -->
+
+        <li id="carousel__slide7" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper"></div>
+          <!-- <a href="#carousel__slide1" class="carousel__prev">Go to previous slide</a>
+            <a href="#carousel__slide3" class="carousel__next">Go to next slide</a> -->
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+                <h1>Account</h1>
+                <div class="grey-line"></div>
+                <h2>Manage your account and edit log in credentials</h2><br>
+                <div class="ss">
+                  <img src="../images/manageaccountss.jpg">
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Slide 8 -->
+
+        <li id="carousel__slide8" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper"></div>
+          <!-- <a href="#carousel__slide1" class="carousel__prev">Go to previous slide</a>
+            <a href="#carousel__slide3" class="carousel__next">Go to next slide</a> -->
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+                <h1>Log In</h1>
+                <div class="grey-line"></div>
+                <h2>Log into your account or create a new one</h2><br>
+                <div class="ss">
+                  <img src="../images/signinss.jpg">
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ol>
+
+      <aside class="carousel__navigation">
+        <ol class="carousel__navigation-list">
+          <li class="carousel__navigation-item">
+            <a href="#carousel__slide1" class="carousel__navigation-button">1</a>
+          </li>
+          <li class="carousel__navigation-item">
+            <a href="#carousel__slide2" class="carousel__navigation-button">2</a>
+          </li>
+          <li class="carousel__navigation-item">
+            <a href="#carousel__slide3" class="carousel__navigation-button">3</a>
+          </li>
+          <li class="carousel__navigation-item">
+            <a href="#carousel__slide4" class="carousel__navigation-button">4</a>
+          </li>
+          <li class="carousel__navigation-item">
+            <a href="#carousel__slide5" class="carousel__navigation-button">5</a>
+          </li>
+          <li class="carousel__navigation-item">
+            <a href="#carousel__slide6" class="carousel__navigation-button">6</a>
+          </li>
+          <li class="carousel__navigation-item">
+            <a href="#carousel__slide7" class="carousel__navigation-button">7</a>
+          </li>
+          <li class="carousel__navigation-item">
+            <a href="#carousel__slide8" class="carousel__navigation-button">8</a>
+          </li>
+        </ol>
+      </aside>
+    </section>
+  </main>
+
+  <div class="space"></div>
+  <div class="space"></div>
+  <div class="space"></div>
+
+  <script>
+    function navigateToSlide(slideNumber) {
+      // Create a synthetic click event
+      var clickEvent = new Event('click', { bubbles: true });
+
+      // Find the corresponding navigation button and trigger a click
+      var navigationButton = document.querySelector('.carousel__navigation-button[href="#carousel__slide' + slideNumber + '"]');
+      navigationButton.dispatchEvent(clickEvent);
+    }
+  </script>
+
+  <footer>
+    Cathy's Cookbook © 2023
+  </footer>
+
+</body>
+
+</html>

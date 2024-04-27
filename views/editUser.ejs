@@ -1,0 +1,127 @@
+<!-- 
+    Authors: Section 2, Group 1 (Michael Hutchings, Jared Rosenlund, Adam Ross, and Ryan Ward)
+    Description: This view allows existing users to edit their account information.
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="This is a platform providing a systematic way to study and implement the characteristics of Jesus Christ into one's own self.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Meal Planning Tool">
+  <meta property="og:site_name" content="Easy Meal Planner">
+  <meta property="og:url" content="">
+  <meta property="og:description"
+    content="Create and save favorite recipes, and generate a shopping list and meal plan for the week.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../images/Cathy's (blk).svg">
+  <meta property="og:image:alt" content="Christ wearing a crown of thorns.">
+  <meta property="og:image:width" content="1200px">
+  <meta property="og:image:height" content="630px">
+
+  <!-- Title -->
+  <title>Cathy's Cookbook</title>
+
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/Cathy's (blk).svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/Cathy's (blk).svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/Cathy's (blk).svg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="/styles/main.css">
+  <script src="/index.js" defer></script>
+</head>
+
+<body class="bg-image">
+  <header>
+    <nav class="navbar">
+      <!-- <div class="logo">
+      <img class="logo-img" src="/images/Cathy's (blk).svg" alt="Logo">
+    </div> -->
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/search">My Recipes</a>
+        <a href="/searchapi">Online Recipes</a>
+        <a href="/addRecipe">Add Recipe</a>
+        <a href="/myLists">My Lists</a>
+        <a href="/manageAccount">Account</a>
+
+        <!-- EJS FOR LOGIN / LOGOUT LINK FUNCTIONALITY -->
+
+        <% if (user) { %>
+          <% console.log("This is the log with try on the index page if there is a user :", user) %>
+            <% var name="Log Out" ; %>
+              <% var path="/logout" ; %>
+                <% } else { %>
+                  <% console.log("This is the log with catch on the index page if there is no user.") %>
+                    <% var name="Log In" ; %>
+                      <% var path="/login" ; %>
+                        <% } %>
+
+                          <a href="<%= path %>">
+                            <%= name %>
+                          </a>
+
+      </div>
+    </nav>
+  </header>
+
+  <div class="space"></div>
+
+  <div class="login-logo">
+    <img src="../images/Cathy's (blk).svg" width="300px" height="300px">
+  </div>
+
+  <br><br><br>
+
+  <div class="grey-line"></div><br>
+
+  <h3>Edit User</h3>
+  <!-- 
+  Form for editing a user with action /editUser and method post -->
+
+  <div class="form">
+    <form method="post" action="/editUser">
+      <input type="hidden" id="editActiveUsername" name="editActiveUsername" value="<%= editActiveUsername %>">
+      <label for="editUserName">Username</label>
+      <input type="text" id="editUserName" name="editUserName" value="<%= userList[0].username%>" required>
+      <br><br>
+      <label for="editPassword">Password</label>
+      <input type="text" id="editPassword" name="editPassword" value="<%= userList[0].up_password %>" required>
+      <br><br>
+      <label for="editFirstName">First Name</label>
+      <input type="text" id="editFirstName" name="editFirstName" value="<%= userList[0].userfirstname %>" required>
+      <br><br>
+      <label for="editLastName">Last Name</label>
+      <input type="text" id="editLastName" name="editLastName" value="<%= userList[0].userlastname %>" required>
+      <br><br>
+      <label for="editEmail">Email</label>
+      <input type="text" id="editEmail" name="editEmail" value="<%= userList[0].email %>" required>
+      <br><br>
+
+      <button type="submit">Save</button>
+    </form>
+  </div>
+
+  <div class="space"></div>
+  <div class="space"></div>
+  <div class="space"></div>
+</body>
+
+<footer>
+  <p>Cathy's Cookbook © 2023</p>
+</footer>
+
+</html>

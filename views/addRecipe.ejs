@@ -1,0 +1,319 @@
+<!-- 
+    Authors: Section 2, Group 1 (Michael Hutchings, Jared Rosenlund, Adam Ross, and Ryan Ward)
+    Description: This view allows users to add new recipes to the database.
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="This is a platform providing a systematic way to study and implement the characteristics of Jesus Christ into one's own self.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Meal Planning Tool">
+  <meta property="og:site_name" content="Easy Meal Planner">
+  <meta property="og:url" content="">
+  <meta property="og:description"
+    content="Create and save favorite recipes, and generate a shopping list and meal plan for the week.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../images/Cathy's (blk).svg">
+  <meta property="og:image:alt" content="Christ wearing a crown of thorns.">
+  <meta property="og:image:width" content="1200px">
+  <meta property="og:image:height" content="630px">
+
+  <!-- Title -->
+  <title>Cathy's Cookbook</title>
+
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/Cathy's (blk).svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/Cathy's (blk).svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/Cathy's (blk).svg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/25036f5405.js" crossorigin="anonymous"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="/styles/main.css">
+  <script src="/index.js" defer></script>
+</head>
+
+<body class="bg-image">
+  <header>
+    <!-- Nav Bar -->
+    <nav class="navbar">
+      <!-- <div class="logo">
+        <img class="logo-img" src="/images/Cathy's (blk).svg" alt="Logo">
+      </div> -->
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/search">My Recipes</a>
+        <a href="/searchapi">Online Recipes</a>
+        <a href="/myLists">My Lists</a>
+        <a href="/manageAccount">Account</a>
+
+        <!-- EJS FOR LOGIN / LOGOUT LINK FUNCTIONALITY -->
+
+        <% if (user) { %>
+          <% var name="Log Out" ; %>
+            <% var path="/logout" ; %>
+              <% } else { %>
+                <% var name="Log In" ; %>
+                  <% var path="/login" ; %>
+                    <% } %>
+                      <a href="<%= path %>">
+                        <%= name %>
+                      </a>
+
+      </div>
+    </nav>
+
+  </header>
+
+  <div class="space"></div>
+
+  <main class="backdrop">
+
+    <section class="logo-main">
+      <div class="img-hero">
+        <img src="../images/cookbook.jpg">
+      </div>
+    </section>
+
+    <h1>ADD A RECIPE</h1>
+
+    <div class="grey-line"></div>
+    <!-- 
+  Form for creating a recipe with action /addRecipe and method Post -->
+
+    <div class="space"></div>
+    <form id="recipeForm" action="/addRecipe" method="post">
+      <div class="bigform">
+        <label for="recipeName">RECIPE NAME</label>
+        <input type="text" name="recipeName" id="recipeName" placeholder="Enter recipe name" required>
+        <div class="space"></div>
+        <label for="recipeClass">RECIPE TYPE</label>
+        <select id="recipeClass" name="recipeClass" required>
+          <option value="1">Main Course</option>
+          <option value="2">Vegetable</option>
+          <option value="3">Starch</option>
+          <option value="4">Salad</option>
+          <option value="5">Hors d'oeuvres</option>
+          <option value="6">Dessert</option>
+          <option value="7">Soup</option>
+        </select>
+        <div class="space"></div>
+      </div>
+
+      <div class="space"></div>
+      <div class="space"></div>
+
+      <div class="bigform">
+        <div id="ingredientsContainer">
+          <section class="ingredient-row">
+            <div class="ingredient">
+              <label for="ingredient1">INGREDIENT</label>
+              <select id="ingredient1" name="ingredient1" required>
+                <option value="1">Beef</option>
+                <option value="2">Onion</option>
+                <option value="3">Water</option>
+                <option value="4">Guinness Beer</option>
+                <option value="5">Potato</option>
+                <option value="6">Carrot</option>
+                <option value="7">Tomato</option>
+                <option value="8">Jalapeno</option>
+                <option value="9">Garlic</option>
+                <option value="10">Black Pepper (ground)</option>
+                <option value="11">Salt</option>
+                <option value="12">Halibut</option>
+                <option value="13">Chicken, Fryer</option>
+                <option value="14">Bacon</option>
+                <option value="15">Romaine Lettuce</option>
+                <option value="16">Iceberg Lettuce</option>
+                <option value="17">Butterhead Lettuce</option>
+                <option value="18">Scallop</option>
+                <option value="19">Salmon</option>
+                <option value="20">Vinegar</option>
+                <option value="21">Olive Oil</option>
+                <option value="22">Cucumber</option>
+                <option value="23">Mushrooms</option>
+                <option value="24">Red Wine</option>
+                <option value="25">White Wine</option>
+                <option value="26">Milk</option>
+                <option value="27">Cheddar Cheese</option>
+                <option value="28">Tortilla Chips</option>
+                <option value="29">Black Olives</option>
+                <option value="30">Green Beans</option>
+                <option value="31">Fettuccini Pasta</option>
+                <option value="32">Heavy Cream</option>
+                <option value="33">Chicken, Pre-cut</option>
+                <option value="34">T-bone Steak</option>
+                <option value="35">Chicken Breast</option>
+                <option value="36">Chicken Leg</option>
+                <option value="37">Chicken Wing</option>
+                <option value="38">Chicken Thigh</option>
+                <option value="39">New York Steak</option>
+                <option value="40">Spaghetti</option>
+                <option value="41">Mustard, Regular</option>
+                <option value="42">Mustard, Dijon</option>
+                <option value="43">Ketchup</option>
+                <option value="44">Salsa</option>
+                <option value="45">Parmesan Cheese</option>
+                <option value="46">Blue Cheese</option>
+                <option value="47">Butter</option>
+                <option value="48">Green Onion</option>
+                <option value="49">Green Olives</option>
+                <option value="50">Vegetable Oil</option>
+                <option value="51">White Pepper (ground)</option>
+                <option value="52">Cayenne Pepper, Ground</option>
+                <option value="53">Radishes</option>
+                <option value="54">Balsamic Vinaigrette Dressing</option>
+                <option value="55">Sponge Cake</option>
+                <option value="56">Raspberry Jello</option>
+                <option value="57">Bird's Custard Powder</option>
+                <option value="58">Colored sugar sprinkles</option>
+                <option value="59">Raspberry Jam</option>
+                <option value="61">Flour</option>
+                <option value="62">Eggs</option>
+                <option value="63">Beef drippings</option>
+                <option value="64">Red Snapper</option>
+                <option value="65">Canned tomatoes</option>
+                <option value="66">Nutmeg</option>
+                <option value="67">Cinnamon</option>
+                <option value="68">Lime Juice</option>
+                <option value="69">Asparagus</option>
+                <option value="70">Parsley</option>
+                <option value="71">Pie dough for 2-crust pie</option>
+                <option value="72">Ground Pork</option>
+                <option value="73">Ground Clove</option>
+                <option value="74">Bread Crumbs</option>
+                <option value="75">Leek</option>
+                <option value="76">Red Bell Pepper</option>
+                <option value="77">Lemon Juice</option>
+                <option value="78">Lemon</option>
+                <option value="79">Lemon Sorbet</option>
+                <option value="80">Vodka</option>
+              </select>
+            </div>
+
+            <div class="amount">
+              <label for="quantity1">AMOUNT</label>
+              <input type="number" id="quantity1" name="quantity1" placeholder="1" required>
+            </div>
+
+            <div class="unit">
+              <label for="unit1">UNIT</label>
+              <select id="unit1" name="unit1" required>
+                <option value="1">Ounce</option>
+                <option value="2">Cup</option>
+                <option value="3">Teaspoon</option>
+                <option value="4">Tablespoon</option>
+                <option value="5">Pound</option>
+                <option value="6">Pinch</option>
+                <option value="7">Piece</option>
+                <option value="8">Slice</option>
+                <option value="9">Dash</option>
+                <option value="10">Can</option>
+                <option value="11">Bag</option>
+                <option value="12">Bottle</option>
+                <option value="13">Head</option>
+                <option value="14">Bunch</option>
+                <option value="15">Ear</option>
+                <option value="16">Clove</option>
+                <option value="17">Whole</option>
+                <option value="18">Pint</option>
+                <option value="19">To Taste</option>
+                <option value="20">Package</option>
+                <option value="21">Jar</option>
+                <option value="22">Sprig</option>
+                <option value="23">Quarts</option>
+                <option value="24">Sticks</option>
+                <option value="25">Filets</option>
+                <option value="26">Scoop</option>
+              </select>
+            </div>
+          </section>
+        </div>
+
+        <div class="button-container">
+          <button class="formbutton" type="button" onclick="AddIngredient()">ADD INGREDIENT</button>
+        </div>
+      </div>
+
+      <div class="space"></div>
+      <div class="space"></div>
+
+      <div class="bigform">
+        <label for="preparation">PREPARATION INSTRUCTIONS</label>
+        <input type="text" id="preparation" name="preparation" placeholder="Enter preparation instructions" required>
+        <div class="space"></div>
+        <label for="notes">NOTES</label>
+        <input type="text" id="notes" name="notes" placeholder="OPTIONAL. Enter additional notes.">
+        <div class="space"></div>
+        <input id="ingredientCounter" name="ingredientCounter" type="hidden" value="1">
+      </div>
+
+      <div class="space"></div>
+      <div class="button-container">
+        <button class="" type="submit">SUBMIT</button>
+      </div>
+    </form>
+  </main>
+  <div class="space"></div>
+
+
+  <script>
+    // Add input box for another ingredient
+    var ingredientCounter = 1; // Initialize the counter
+
+    // This is the function that allows us to display multiple ingredient at a click of a button
+
+    function AddIngredient() {
+      var ingredientsContainer = document.getElementById("ingredientsContainer");
+      var newIngredientContainer = ingredientsContainer.cloneNode(true);
+
+      // Update the counter for unique IDs and names
+      ingredientCounter++;
+
+      // Update the IDs and names in the cloned container
+      newIngredientContainer.id = "ingredient" + ingredientCounter;
+      newIngredientContainer.querySelector("label[for^='ingredient']").htmlFor = "ingredient" + ingredientCounter;
+      newIngredientContainer.querySelector("select[name^='ingredient']").name = "ingredient" + ingredientCounter;
+
+      newIngredientContainer.querySelector("label[for^='quantity']").htmlFor = "quantity" + ingredientCounter;
+      newIngredientContainer.querySelector("input[name^='quantity']").name = "quantity" + ingredientCounter;
+
+      newIngredientContainer.querySelector("label[for^='unit']").htmlFor = "unit" + ingredientCounter;
+      newIngredientContainer.querySelector("select[name^='unit']").name = "unit" + ingredientCounter;
+
+      // Clear input values in the cloned container
+      newIngredientContainer.querySelector("select[name^='ingredient']").value = "";
+      newIngredientContainer.querySelector("select[name^='unit']").value = "";
+      newIngredientContainer.querySelector("input[name^='quantity']").value = "";
+
+      document.getElementById("ingredientCounter").value = ingredientCounter
+
+      ingredientsContainer.parentNode.insertBefore(
+        newIngredientContainer,
+        ingredientsContainer.nextSibling
+      );
+    }
+
+  </script>
+
+  <div class="space"></div>
+
+  <footer>
+    <p>Cathy's Cookbook © 2023</p>
+  </footer>
+
+</body>
+
+</html>
